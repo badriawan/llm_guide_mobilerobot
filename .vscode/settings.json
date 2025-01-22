@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/badri/nav2_gpt/install/ros2ai_msgs/local/lib/python3.10/dist-packages",
+        "/home/badri/nav2_gpt/install/ros2ai/lib/python3.10/site-packages",
+        "/home/badri/ros2_ws/install/casadi_mpc/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/badri/nav2_gpt/install/ros2ai_msgs/local/lib/python3.10/dist-packages",
+        "/home/badri/nav2_gpt/install/ros2ai/lib/python3.10/site-packages",
+        "/home/badri/ros2_ws/install/casadi_mpc/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
