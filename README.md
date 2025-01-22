@@ -12,10 +12,13 @@ To explore detailed information about:
 First, fork this repository into your own GitHub account. Then, clone it to your local machine using the command below:
 
 ```bash
-git clone https://github.com/your_github_account/llm-guide-robot.git
+git clone https://github.com/your_github_account/llm-guide-mobilerobot.git
 ```
 
-
+```bash
+cd llm-guide-mobilerobot
+colcon build
+```
 
 ## ⚙️ Using the Framework with Nav2
 
@@ -24,7 +27,7 @@ To integrate the framework with your own robot, modify the `llm_robot` and `llm_
 ### Steps to Test with Nav2 System:
 1. Source the workspace:
    ```bash
-   source llm-guide-robot/install/setup.bash
+   source llm-guide-mobilerobot/install/setup.bash
    ```
 
 2. Launch the Nav2 system:
