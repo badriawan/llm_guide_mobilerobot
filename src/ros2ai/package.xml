@@ -4,7 +4,7 @@
   <name>ros2ai</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="sachinkum123567@gmail.com">asus</maintainer>
+  <maintainer email="yusufbadriawan@gmail.com">asus</maintainer>
   <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>

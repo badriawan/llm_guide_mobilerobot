@@ -1,1 +1,10 @@
 sudo docker run --platform linux/arm64 --env-file .env -p 8080:8080 yzdnaufan/proyek-robot
+
+
+How to config the docker container:
+- first remove build install and log
+- make a dockerfile
+- build the docker -t latest .
+- check the images
+- run the container with -it --rm and bash
+- clean the docker if there are a lot of cache and build failed. 
