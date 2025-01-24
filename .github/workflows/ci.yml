@@ -13,6 +13,11 @@ jobs:
         with:
           required-ros-distributions: humble
 
+      - name: Initialize rosdep
+        run: |
+          sudo rosdep init
+          rosdep update
+
       - name: Install dependencies
         run: |
           sudo apt update
