@@ -15,7 +15,12 @@ jobs:
 
       - name: Initialize rosdep
         run: |
-          sudo rosdep init
+          # Only run rosdep init if the file doesn’t exist
+          if [ -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+            echo "rosdep already initialized. Skipping rosdep init."
+          else
+            sudo rosdep init || true
+          fi
           rosdep update
 
       - name: Install dependencies
