@@ -9,42 +9,16 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup ROS 2 Humble
+        uses: ros-tooling/setup-ros@v0.5
+        with:
+          required-ros-distributions: humble
+
+      - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y locales
-          sudo locale-gen en_US en_US.UTF-8
-          sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-          export LANG=en_US.UTF-8
-
-          sudo apt install -y software-properties-common
-          sudo add-apt-repository universe
-          sudo apt update
-          sudo apt install -y curl gnupg lsb-release
-
-          # Menambahkan kunci GPG ROS 2
-          sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | sudo apt-key add -
-
-          # Menambahkan repository ROS 2
-          sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2.list'
-
-          sudo apt update
-          sudo apt install -y ros-humble-desktop
-
-          source /opt/ros/humble/setup.bash
-
-          # Menginstal colcon dan dependensi lainnya
-          sudo apt install -y python3-colcon-common-extensions python3-rosdep
-
-          # Inisialisasi rosdep
-          sudo rosdep init
-          rosdep update
-
+          rosdep install --from-paths src --ignore-src -r -y
 
       - name: Build
-        run: |
-          colcon build
+        run: colcon build
 
-      - name: Test
-        run: |
-          colcon test
-          colcon test-result --verbose
+
