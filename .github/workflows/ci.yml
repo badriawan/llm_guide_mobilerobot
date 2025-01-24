@@ -28,8 +28,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ros-humble-ament-cmake python3-colcon-common-extensions
           rosdep install --from-paths src --ignore-src -r -y
-
-      - name: Build
-        run: colcon build
+          
+     - name: Build
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build
 
 
