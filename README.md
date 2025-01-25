@@ -1,4 +1,4 @@
-Welcome to the repository for DTETI UGM's guide robot development, which integrates ROS-LLM and Nav2 packages. This repository is forked from the original [Auromix/ROS-LLM](https://github.com/Auromix/ROS-LLM).
+Welcome to the repository for DTETI UGM's guide robot development, which integrates ROS-LLM and Nav2 packages. This repository is forked from the original [nav2LLM](https://github.com/sachinkum0009/nav2gpt).
 
 To explore detailed information about:
 - **Nav2-LLM Integration**: Visit the [ROS-LLM](https://github.com/Auromix/ROS-LLM)  [nav2LLM](https://github.com/sachinkum0009/nav2gpt).
