@@ -20,6 +20,7 @@ import openai
 
 import os
 from dotenv import load_dotenv
+import yaml
 
 # Muat file .env
 load_dotenv(dotenv_path="/home/badri/nav2_gpt/.env")
@@ -70,7 +71,12 @@ class NavGpt(Node):
         payload = {"text": prompt}
         response = requests.post(url, json=payload)
         response_json = response.json()
-        return response_json["generated"]["command"]["parameters"]["target"]
+        try:
+            is_nav = response_json["generated"]["command"]["isNav"]
+        except:
+            is_nav = False
+        final_response = response_json["generated"]
+        return final_response, is_nav
 
     def speechtotext(self, path):
         with open(path, "rb") as audio_file:
@@ -84,25 +90,44 @@ def main(args=None):
     rclpy.init(args=args)
     try:
         node = NavGpt()
-        input("Press Enter to start recording...")
-        filename = "recorded_audio.wav"
-        duration = 10
-        node.record_audio(filename, duration)
+        processing = True
+        while processing: 
+            input("Press Enter to start recording...")
+            filename = "recorded_audio.wav"
+            duration = 10
+            node.record_audio(filename, duration)
 
-        print("Transcribing...")
-        result = node.speechtotext(filename)
-        print("Transcription:", result)
+            print("Transcribing...")
+            result = node.speechtotext(filename)
+            print("Transcription:", result)
 
-        # Example usage of custom prompt
-        gpt_output = node.invoke_gpt4(result)
-        print("GPT output:", gpt_output)
-
-        # Hard-coded example of mapping response to a command
-        if gpt_output == "lecturer_room":
-            commands_str = '[{"args":{"x":-2.36,"y":0.76,"theta":90},"service":"/goToPose"}]'
-            commands = json.loads(commands_str)
-            for command in commands:
-                node.execute_command(command)
+            # Example usage of custom prompt
+            gpt_output, isnav = node.invoke_gpt4(result)
+            
+            if isnav:
+                room_name = gpt_output["command"]["parameters"]["target"]
+                print("going to {room_name}")
+                with open("src/ros2ai/ros2ai/room.yaml", "r") as file:
+                    data = yaml.safe_load(file)
+                    filtered_data = [
+                        {
+                        "args": {
+                            "x": entry["args"]["x"],
+                            "y": entry["args"]["y"],
+                            "theta": entry["args"]["theta"]
+                        },
+                        "service": "/goToPose"
+                    }
+                    for entry in data if entry["name"] == room_name
+                ]
+                for command in filtered_data:
+                    node.execute_command(command)
+            else: 
+                print("GPT output: {gpt_output}")
+            
+            processing_arg = input("End the program?")
+            if processing_arg == "y":
+                processing = False
 
     except Exception as e:
         print(f"Exception: {e}")

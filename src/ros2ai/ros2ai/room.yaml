@@ -1,0 +1,15 @@
+- name: lecturer_room
+  args:
+    x: 1
+    y: 1
+    theta: "90"
+- name: lab_ai
+  args:
+    x: 2
+    y: 2
+    theta: "90"
+- name: coworking_space
+  args:
+    x: 3
+    y: 3
+    theta: "90"
