@@ -1,0 +1,35 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup ROS 2 Humble
+        uses: ros-tooling/setup-ros@v0.5
+        with:
+          required-ros-distributions: humble
+
+      - name: Initialize rosdep
+        run: |
+          # Only run rosdep init if the file doesn’t exist
+          if [ -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+            echo "rosdep already initialized. Skipping rosdep init."
+          else
+            sudo rosdep init || true
+          fi
+          rosdep update
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ros-humble-ament-cmake python3-colcon-common-extensions
+          rosdep install --from-paths src --ignore-src -r -y
+          
+      - name: Build
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build
