@@ -1,0 +1,3 @@
+[submodule "llm_module"]
+	path = llm_module
+	url = https://github.com/yzdnaufan/llm-module-rosnav
