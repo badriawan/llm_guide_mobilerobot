@@ -1,3 +1,7 @@
 [submodule "llm_module"]
 	path = llm_module
 	url = https://github.com/yzdnaufan/llm-module-rosnav
+
+[submodule "multi_robot"]
+	path = multi_robot
+	url = https://github.com/badriawan/turtlebot3_multi_robot.git
