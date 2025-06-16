@@ -1,0 +1,7 @@
+<launch>
+  <!-- Including in another launch file -->
+  <include file="$(find-pkg-share foxglove_bridge)/launch/foxglove_bridge_launch.xml">
+    <!-- <arg name="port" value="9090"/> -->
+    <!-- ... other arguments ... -->
+  </include>
+</launch>
