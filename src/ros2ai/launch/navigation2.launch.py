@@ -202,6 +202,13 @@ def generate_launch_description():
                           'autostart': autostart,
                           'use_composition': use_composition,
                           'use_respawn': use_respawn}.items())
+    
+    initial_pose_node = Node(
+        package='ros2ai',
+        executable='StartPos',
+        name='StartPos',
+        output='screen',
+    )
 
     # Create the launch description and populate
     ld = LaunchDescription()
@@ -235,5 +242,7 @@ def generate_launch_description():
     ld.add_action(start_robot_state_publisher_cmd)
     ld.add_action(rviz_cmd)
     ld.add_action(bringup_cmd)
+    ld.add_action(initial_pose_node)
+
 
     return ld

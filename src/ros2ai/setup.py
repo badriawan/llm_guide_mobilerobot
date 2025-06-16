@@ -33,6 +33,8 @@ setup(
             'Nav2Chatgpt = ros2ai.nav_chatgpt:main',
             'Nav24o = ros2ai.nav_4o:main',
             'Nav2Rag = ros2ai.nav_rag:main',
+            'StartPos = ros2ai.start_position:main',
+
 
 
         ],
