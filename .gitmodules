@@ -4,7 +4,3 @@
 [submodule "tb3_multi_robot"]
 	path = tb3_multi_robot
 	url = https://github.com/badriawan/turtlebot3_multi_robot.git
-[submodule "navigation2"]
-	path = navigation2
-	url = https://github.com/badriawan/navigation2.git
-	branch = humble
