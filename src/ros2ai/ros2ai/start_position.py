@@ -6,7 +6,7 @@ class InitialPosePublisher(Node):
     def __init__(self):
         super().__init__('initial_pose_publisher')
         self.publisher_ = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
-        timer_period = 2.0  # delay waktu untuk memastikan RViz dan amcl sudah siap
+        timer_period = 8.0  # delay waktu untuk memastikan RViz dan amcl sudah siap
         self.timer = self.create_timer(timer_period, self.publish_initial_pose)
 
     def publish_initial_pose(self):
